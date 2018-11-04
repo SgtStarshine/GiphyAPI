@@ -1,22 +1,26 @@
 $(document).ready( function() {
 
-    var topicArray = ["cats","dogs","birds"];
+    var topicArray = ["cat","dog","bird"];
 
-    for (var i = 0; i < topicArray.length; i++) {
+    function renderButtons() {
 
-        var topicsBtn = $("<button>");
+        $("#buttons").empty();
 
-        topicsBtn.addClass("topic topic-button-color");
+        for (var i = 0; i < topicArray.length; i++) {
 
-        topicsBtn.attr("topic", topicArray[i]);
+            var topicsBtn = $("<button>");
 
-        topicsBtn.text(topicArray[i]);
+            topicsBtn.addClass("topic topic-button-color");
 
-        $("#buttons").append(topicsBtn);
-      }  
+            topicsBtn.attr("topic", topicArray[i]);
 
-    // Event listener
-    $("button").on("click", function() {
+            topicsBtn.text(topicArray[i]);
+
+            $("#buttons").append(topicsBtn);
+        }  
+    };
+
+    function gifRetrieveInfo() {
 
     var topic = $(this).attr("topic");
 
@@ -68,7 +72,7 @@ $(document).ready( function() {
             $("#images").prepend(gifDiv);
                 
             }
-            
+
             $(".image-click").on("click", function() {
 
                 var state = $(this).attr("data-state");
@@ -79,11 +83,33 @@ $(document).ready( function() {
                 } else {
                     $(this).attr("src", $(this).attr("data-still"));
                     $(this).attr("data-state", "still");
-                }
+            }
             });
         });
-    });
+    };
 
     
 
+    $("#b-submit").on("click", function(event) {
+        event.preventDefault();
+        
+        var topicItem = $("#b-create").val().trim();
+
+        if ( topicItem != "") {
+
+            topicArray.push(topicItem);
+
+            $("#b-create").val("");
+
+            renderButtons();
+
+        }   else {
+
+            alert("Please input a search term");
+        }
+    });
+
+    $(document).on("click", ".topic", gifRetrieveInfo);
+
+    renderButtons();
 })
