@@ -73,6 +73,7 @@ $(document).ready( function() {
                 
             }
 
+            // Event listener for switching between still images and animated images
             $(".image-click").on("click", function() {
 
                 var state = $(this).attr("data-state");
@@ -89,18 +90,22 @@ $(document).ready( function() {
     };
 
     
-
+    // Event listener for input and submit
     $("#b-submit").on("click", function(event) {
         event.preventDefault();
         
         var topicItem = $("#b-create").val().trim();
 
+        // Checks if the input field is not empty
         if ( topicItem != "") {
 
+            // New search term will be pushed to the array
             topicArray.push(topicItem);
 
+            // Input field will be emptied
             $("#b-create").val("");
 
+            // Array buttons rendered
             renderButtons();
 
         }   else {
@@ -108,6 +113,11 @@ $(document).ready( function() {
             alert("Please input a search term");
         }
     });
+
+    $("#clear").on("click", function() {
+
+        $("#images").empty();
+    })
 
     $(document).on("click", ".topic", gifRetrieveInfo);
 
