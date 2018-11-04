@@ -19,7 +19,7 @@ $(document).ready( function() {
     $(".topic-button").on("click", function() {
 
     // Storing our giphy API URL for a random cat image
-    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats";
+    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=8XD6AWqjbueVXKiGPG33J72nIZNpVGWx";
 
     // Perfoming an AJAX GET request to our queryURL
     $.ajax({
